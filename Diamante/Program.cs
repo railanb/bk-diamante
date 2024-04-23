@@ -4,53 +4,49 @@
     {
         static void Main(string[] args)
         {
-            /*
-             * Diamantes de x Dado um número ímpar, exiba um diamante desenhado com a letra ‘x’.
-            */
-            int tamamanhoDiamante = 0;
+            int diamantTam;
+            int meio;
             do
             {
                 Console.Clear();
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.Title = "Diamante";
 
-                Console.WriteLine("Quero imprimir um diamante para números impar.\r\n" +
-                    "Entre com o tamanho do diamante:");
-                tamamanhoDiamante = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine("## Diamente de numero IMPAES ##\n" +
+                    "Digite um numero impar: (Digite numero par para Sair) ");
+                diamantTam = Convert.ToInt16(Console.ReadLine());
 
-                if (DeveSerImpar(tamamanhoDiamante) is false)
+                if (imparNum(diamantTam) is false)
                 {
-                    Console.WriteLine("Preciso de um número impar");
+                    Console.WriteLine("Apenas numero IMPAR");
                     return;
                 }
 
-                int meio = tamamanhoDiamante / 2;
+                meio = diamantTam / 2;
 
                 for (int i = 0; i <= meio; i++)
                 {
-                    PercorrerEspaçosVertical(tamamanhoDiamante, meio, i);
+                    espacoVertical(diamantTam, meio, i);
                     Console.WriteLine();
                 }
 
                 for (int i = meio - 1; i >= 0; i--)
                 {
-                    PercorrerEspaçosVertical(tamamanhoDiamante, meio, i);
+                    espacoVertical(diamantTam, meio, i);
                     Console.WriteLine();
                 }
                 Console.ReadKey();
-            } while (DeveSerImpar(tamamanhoDiamante));
+            } while (imparNum(diamantTam));
 
         }
 
-        private static void PercorrerEspaçosVertical(int tamamanhoDiamante, int meio, int i)
+        private static void espacoVertical(int tamamanhoDiamante, int meio, int i)
         {
             for (int j = 0; j < tamamanhoDiamante; j++)
             {
-                ValidarCorpoDiamante(meio, i, j);
+                corpoDiamant(meio, i, j);
             }
         }
 
-        private static void ValidarCorpoDiamante(int meio, int i, int j)
+        private static void corpoDiamant(int meio, int i, int j)
         {
             bool validarLadoEsquerdo = j >= meio - i;
             bool validarLadoDireito = j <= meio + i;
@@ -65,7 +61,7 @@
             }
         }
 
-        static bool DeveSerImpar(int numero)
+        static bool imparNum(int numero)
         {
             return numero % 2 != 0;
         }
